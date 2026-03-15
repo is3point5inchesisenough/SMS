@@ -9,7 +9,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-const PORT = 3000;
+// Use Render's PORT or default to 3000
+const PORT = process.env.PORT || 3000;
 
 // Twilio Client Initialization
 const getTwilioClient = () => {
