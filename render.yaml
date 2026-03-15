@@ -1,10 +1,1 @@
-services:
-  - type: web
-    name: SMS
-    env: node
-    plan: free
-    buildCommand: npm install && npm run build
-    startCommand: npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
+
