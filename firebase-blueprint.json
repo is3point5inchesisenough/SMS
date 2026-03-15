@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with phone number authentication.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "phoneNumber": { "type": "string", "description": "Philippine phone number (+63...)" },
+        "role": { "type": "string", "enum": ["admin", "user"], "description": "User role" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "phoneNumber", "role"]
+    },
+    "Template": {
+      "title": "Template",
+      "description": "SMS message templates.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string", "description": "Template name (e.g., Announcement)" },
+        "content": { "type": "string", "description": "Template content with placeholders like {{name}}" },
+        "createdBy": { "type": "string", "description": "User UID who created the template" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "content", "createdBy"]
+    },
+    "MessageLog": {
+      "title": "MessageLog",
+      "description": "Log of sent messages.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "senderUid": { "type": "string" },
+        "recipient": { "type": "string" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["sent", "failed"] },
+        "type": { "type": "string", "enum": ["single", "bulk"] },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderUid", "recipient", "message", "status", "type"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/templates/{templateId}": {
+      "schema": "Template",
+      "description": "Global or user-specific templates"
+    },
+    "/messageLogs/{logId}": {
+      "schema": "MessageLog",
+      "description": "History of sent messages"
+    }
+  }
+}

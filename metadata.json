@@ -1,0 +1,5 @@
+{
+  "name": "PinoySMS - Bulk SMS Sender",
+  "description": "A professional SMS broadcasting platform with template support and Philippine mobile number authentication.",
+  "requestFramePermissions": []
+}
